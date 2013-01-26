@@ -122,3 +122,8 @@ html {
 body {
   margin: 0px;
 }
+
+#pepito {
+  padding: 10px;
+  height: 370px;
+}

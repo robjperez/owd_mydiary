@@ -6,40 +6,41 @@
     <link rel="stylesheet" type="text/css" href="shared/style_unstable/lists.css">
     <link rel="stylesheet" type="text/css" href="shared/style/buttons.css">
     <link rel="stylesheet" type="text/css" href="css/animations.css">
+    <link rel="stylesheet" type="text/css" href="shared/style/input_areas.css">
+    <link rel="stylesheet" type="text/css" href="shared/style/switches.css">
 
     <script type="text/javascript" src="js/lib/jquery-1.8.2.js"></script>
     <script type="text/javascript" src="js/lib/underscore.js"></script>
     <script type="text/javascript" src="js/lib/backbone.js"></script>
 
-    <script type="text/javascript" src="js/models/entry.js"></script>
+    <!--script type="text/javascript" src="js/models/entry.js"></script>
 		<script type="text/javascript" src="js/models/photoEntry.js"></script>
 		<script type="text/javascript" src="js/models/locationEntry.js"></script>
 
 		<script type="text/javascript" src="js/views/entryView.js"></script>
-		<script type="text/javascript" src="js/views/appView.js"></script>		
+		<script type="text/javascript" src="js/views/appView.js"></script-->		
 
     <script src="js/app.js"></script>
 		<script type="text/javascript">
 			$(function(){
-        var entryList = new EntryList;
-				var timeline = new AppView(entryList);
-          var e = new Entry();
-			    e.set('title', 'title');
-			    e.set('body', 'body');
-          entryList.add(e);
+				var timeline = new AppView;
 
         $('#add-element').click(function(evt) {
           $('#application').addClass('newEntryAnimation');
           $('#application').removeClass('exitNewEntryAnimation');
-          var e = new Entry();
-			    e.set('title', 'title');
-			    e.set('body', 'body');
-          entryList.add(e);
         });
 
         $('#back-from-new-entry').click(function(evt) {
           $('#application').addClass('exitNewEntryAnimation');
           $('#application').removeClass('newEntryAnimation');
+        });
+
+        $('#create-new-entry').click(function(evt) {
+          timeline.addOne({title: $('#titleText').val(), body: $('#bodyText').val() });
+          $('#application').addClass('exitNewEntryAnimation');
+          $('#application').removeClass('newEntryAnimation');
+          $('#titleText').val('');
+          $('#bodyText').val('');
         });
 			});
 		</script>
@@ -57,11 +58,43 @@
             <h1>Activities</h1>
           </header>
         </section>
-        <section data-type="list" id="entry-list">
+        <section data-type="list">
           <header>Today</header>
-            <ul>
+            <ul id="entry-list">
+               <li>
+                <p>Empieza el hackaton!</p>
+                <p>Nuestra primera app para OWD!!!, esto de empezar desde 0 siempre es muy duro!</p>
+               </li>
+               <li>
+                  <aside class="pack-bottom">
+                    <img alt="placeholder" src="map.jpg">
+                  </aside>
+                  <p>Firefox OS App Days</p>
+                  <p>Location</p>
+               </li>
             </ul>
           </header>
+          <header>Yesterday</header>
+          <ul>
+            <li>
+              <p>Documentación Firefox OS</p>
+              <p>Usar Building Blocks!!</p>
+            </li>
+          </ul>
+          <header>24 jan</header>
+          <ul>
+            <li>
+              <aside class="pack-bottom">
+                    <img alt="placeholder" src="map.jpg">
+               </aside>
+              <p>Cena en Donzoko</p>
+              <p>Muy buen restaurante Japonés</p>
+            </li>
+            <li>
+              <p>Ideas regalos para Pamela</p>
+              <p>Charm pandora, paraguas</p>
+            </li>
+          </ul>
         </section>
       </div>
       <div id='new-entry-type'> <!-- Add new activity -->
@@ -70,8 +103,28 @@
             <button id="back-from-new-entry"><span class="icon icon-back">back</span></button>
             <menu type="toolbar">
             </menu>
-            <h1>Select Type</h1>
+            <h1>Add new entry</h1>
           </header>
+          <form id="pepito">
+          <p>
+            <h1>What amazing thing are you doing?</h1>
+          </p>
+          <p>
+            <input type="text" placeholder="Title" id="titleText">
+            <button type="reset">Clear</button>
+          </p>
+          <p>
+            <textarea placeholder="Body" id="bodyText"></textarea>
+          </p>
+          <p>
+          <label>
+            <input type="checkbox" data-type="switch">
+            <span></span>
+          </label>
+          <span style="padding-left: 5px"><strong> Share in Twitter</strong></span>
+          </p>
+          <button id="create-new-entry" style="position:absolute; bottom:0px; width: 95%">Create</button>
+         </form>
         </section>
       </div>
     </div>
