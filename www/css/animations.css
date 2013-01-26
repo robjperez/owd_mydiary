@@ -1,0 +1,124 @@
+/* Move main screen */
+@keyframes appDeeperOut {
+  99%   { transform: translateX(0); }
+  100% { transform: translateX(-100%); }
+}
+
+@keyframes reentrada {
+  0%   { transform: translateX(-100%); }
+  1% { transform: translateX(0); }
+}
+
+
+/* Move main screen header */
+@keyframes appDeeperHeaderOut {
+  50%  { transform: translateX(0); }
+  99%  { transform: translateX(-10%); }
+  100% { transform: translateX(0); }
+}
+
+@keyframes reentradaHeader {
+  50%  { transform: translateX(0); }
+  1%  { transform: translateX(-10%); }
+  100% { transform: translateX(0); }
+}
+
+/* Move main screen body */
+@keyframes appDeeperBodyOut {
+  0%  { transform: translateX(0); }
+  99%  { transform: translateX(-100%); }
+  100% { transform: translateX(0); }
+}
+
+@keyframes reentradaBody {
+  0%  { transform: translateX(0); }
+  1%  { transform: translateX(-100%); }
+  100% { transform: translateX(0); }
+}
+
+/* Move secondary screen */
+@keyframes appDeeperIn {
+  0%   { transform: translateX(100%); opacity: 0; }
+  50%  { opacity: 1; }
+  100% { transform: translateX(0); opacity: 1;}
+}
+
+@keyframes salida {
+  0%   { transform: translateX(0); opacity: 1; }
+  50%  { opacity: 1; }
+  100% { transform: translateX(100%); opacity: 0;}
+}
+
+/* Fade in secondary screen header */
+@keyframes appDeeperHeaderIn {
+  50%  { opacity: 0; }
+  100% { opacity: 1; }
+}
+
+@keyframes salidaHeader {
+  50%  { opacity: 1; }
+  100% { opacity: 0; }
+}
+
+.exitNewEntryAnimation #timeline{
+    animation: reentrada 0.4s forwards ease-in;
+}
+
+.exitNewEntryAnimation #timeline section:first-child {
+    animation: reentradaHeader 0.4s forwards ease-in;
+}
+
+.exitNewEntryAnimation #timeline section:last-child{
+    animation: reentradaBody 0.4s forwards ease-in;
+}
+
+.exitNewEntryAnimation #new-entry-type{
+  animation: salida 0.4s forwards ease-in;
+}
+
+.exitNewEntryAnimation #new-entry-type section:first-child{
+  animation: salidaHeader 0.4s forwards ease-in;
+}
+
+.newEntryAnimation #timeline{
+    animation: appDeeperOut 0.4s forwards ease-in;
+}
+
+.newEntryAnimation #timeline section:first-child {
+    animation: appDeeperHeaderOut 0.4s forwards ease-in;
+}
+
+.newEntryAnimation #timeline section:last-child{
+    animation: appDeeperBodyOut 0.4s forwards ease-in;
+}
+
+.newEntryAnimation #new-entry-type{
+  animation: appDeeperIn 0.4s forwards ease-in;
+}
+
+.newEntryAnimation #new-entry-type section:first-child{
+  animation: appDeeperHeaderIn 0.4s forwards ease-in;
+}
+
+#new-entry-type {
+  position: absolute;
+  transform: translateX(100%);
+  opacity: 0;
+  width: 320px;
+}
+
+#timeline {
+  position: absolute;
+  width: 320px;
+}
+
+html {
+  width: 100%;
+  height: 100%;
+  font-size: 10px;
+  font-family: 'MozTT', sans-serif;
+}
+
+body {
+  margin: 0px;
+}
