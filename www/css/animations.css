@@ -72,11 +72,11 @@
     animation: reentradaBody 0.4s forwards ease-in;
 }
 
-.exitNewEntryAnimation #new-entry-type{
+.exitNewEntryAnimation #new-entry{
   animation: salida 0.4s forwards ease-in;
 }
 
-.exitNewEntryAnimation #new-entry-type section:first-child{
+.exitNewEntryAnimation #new-entry section:first-child{
   animation: salidaHeader 0.4s forwards ease-in;
 }
 
@@ -92,25 +92,46 @@
     animation: appDeeperBodyOut 0.4s forwards ease-in;
 }
 
-.newEntryAnimation #new-entry-type{
+.newEntryAnimation #new-entry{
   animation: appDeeperIn 0.4s forwards ease-in;
 }
 
-.newEntryAnimation #new-entry-type section:first-child{
+.newEntryAnimation #new-entry section:first-child{
   animation: appDeeperHeaderIn 0.4s forwards ease-in;
 }
 
-#new-entry-type {
+#application > div {
   position: absolute;
-  transform: translateX(100%);
-  opacity: 0;
   width: 320px;
+  height: 48rem;
 }
 
-#timeline {
-  position: absolute;
-  width: 320px;
+#new-entry {
+  opacity: 0;
 }
+
+@keyframes appUp {
+0% { transform: translateY(100%); }
+100% { transform: translateY(0);opacity: 1; }
+}
+ 
+@keyframes appDown {
+0% { transform: translateY(0); }
+100% { transform: translateY(100%); opacity: 0;}
+}
+
+#new-entry-type {
+  transform: translateY(100%);
+  animation: appDown 0.2s forwards ease-out;
+  z-index: 100;
+  opacity: 0;
+}
+
+
+#new-entry-type.show {
+  animation: appUp 0.2s forwards ease-out;
+}
+
 
 html {
   width: 100%;
@@ -121,7 +142,16 @@ html {
 
 body {
   margin: 0px;
+  overflow: hidden;
 }
+
+
+
+#timeline {
+  position: absolute;
+  width: 320px;
+}
+
 
 #pepito {
   padding: 10px;

@@ -6,6 +6,7 @@
     <link rel="stylesheet" type="text/css" href="shared/style_unstable/lists.css">
     <link rel="stylesheet" type="text/css" href="shared/style/buttons.css">
     <link rel="stylesheet" type="text/css" href="css/animations.css">
+    <link rel="stylesheet" type="text/css" href="shared/style/action_menu.css">
     <link rel="stylesheet" type="text/css" href="shared/style/input_areas.css">
     <link rel="stylesheet" type="text/css" href="shared/style/switches.css">
 
@@ -26,14 +27,29 @@
 				var timeline = new AppView;
 
         $('#add-element').click(function(evt) {
+          $('#new-entry-type').addClass('show');
+          var e = new Entry();
+			    e.set('title', 'title');
+			    e.set('body', 'body');
+          entryList.add(e);
+        });
+
+        $('#text').click(function(evt) {
+          $('#new-entry-type').removeClass('show');
           $('#application').addClass('newEntryAnimation');
-          $('#application').removeClass('exitNewEntryAnimation');
+          $('#application').removeClass('exitEntryAnimation');
         });
 
         $('#back-from-new-entry').click(function(evt) {
-          $('#application').addClass('exitNewEntryAnimation');
+          $('#new-entry-type').addClass('exitNewEntryAnimation');
           $('#application').removeClass('newEntryAnimation');
         });
+
+        $('#cancelButton').click(function(evt) {
+          $('#new-entry-type').removeClass('show');
+        })
+
+
 
         $('#create-new-entry').click(function(evt) {
           timeline.addOne({title: $('#titleText').val(), body: $('#bodyText').val() });
@@ -81,7 +97,7 @@
               <p>Usar Building Blocks!!</p>
             </li>
           </ul>
-          <header>24 jan</header>
+          <header>jan 24</header>
           <ul>
             <li>
               <aside class="pack-bottom">
@@ -98,6 +114,17 @@
         </section>
       </div>
       <div id='new-entry-type'> <!-- Add new activity -->
+            <form role="dialog" data-type="action" onsubmit="return false;">
+              <header> Create new entry </header> <!-- this header is optional -->
+              <menu>
+              <button id="text"> Text </button>
+              <button> Photo </button>
+              <button> Place </button>
+              <button id='cancelButton'> Cancel </button>
+              </menu>
+            </form>
+      </div>
+      <div id='new-entry'> <!-- Add new activity -->
         <section role="region">
           <header>
             <button id="back-from-new-entry"><span class="icon icon-back">back</span></button>
